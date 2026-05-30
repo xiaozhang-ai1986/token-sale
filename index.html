@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Token 充值服务 - 校长AI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh; padding: 20px;
+        }
+        .container { max-width: 500px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 20px; text-align: center; color: white; }
+        .header h1 { font-size: 28px; margin-bottom: 10px; }
+        .header p { font-size: 14px; opacity: 0.9; }
+        .badge { display: inline-block; background: #4CAF50; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-left: 6px; vertical-align: middle; }
+        .content { padding: 30px 20px; }
+        .section { margin-bottom: 30px; }
+        .section-title { font-size: 18px; font-weight: bold; margin-bottom: 15px; color: #333; display: flex; align-items: center; gap: 8px; }
+        .section-title::before { content: ''; width: 4px; height: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 2px; }
+        .packages { display: flex; flex-direction: column; gap: 15px; }
+        .package { border: 2px solid #e0e0e0; border-radius: 12px; padding: 20px; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+        .package:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .package.recommend { border-color: #667eea; background: linear-gradient(135deg, #f5f7ff 0%, #f0f4ff 100%); }
+        .package-tag { position: absolute; top: -12px; right: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .package-name { font-size: 18px; font-weight: bold; color: #333; margin-bottom: 8px; }
+        .package-price { font-size: 32px; font-weight: bold; color: #667eea; margin-bottom: 5px; }
+        .package-price span { font-size: 16px; font-weight: normal; }
+        .package-tokens { font-size: 14px; color: #666; margin-bottom: 10px; }
+        .package-models { font-size: 13px; color: #999; line-height: 1.6; }
+        .features { list-style: none; }
+        .features li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #666; display: flex; align-items: center; gap: 8px; }
+        .features li:last-child { border-bottom: none; }
+        .features li::before { content: '\2713'; color: #667eea; font-weight: bold; font-size: 16px; }
+        .how-to-use { background: #f8f9fa; border-radius: 12px; padding: 20px; font-size: 14px; line-height: 1.8; color: #666; }
+        .how-to-use ol { margin-left: 20px; }
+        .how-to-use li { margin-bottom: 8px; }
+        .contact { text-align: center; padding: 20px; background: linear-gradient(135deg, #f5f7ff 0%, #f0f4ff 100%); border-radius: 12px; }
+        .contact p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .wechat-qr { width: 200px; height: 200px; margin: 0 auto 15px; border-radius: 12px; overflow: hidden; }
+        .wechat-qr img { width: 100%; height: 100%; object-fit: cover; }
+        .contact-btn { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 40px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 16px; margin-top: 10px; }
+        .footer { text-align: center; padding: 20px; font-size: 12px; color: #999; border-top: 1px solid #f0f0f0; }
+        .api-endpoint { background: #1e1e1e; color: #00ff00; padding: 12px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; margin: 10px 0; word-break: break-all; }
+        .api-endpoint .label { color: #888; }
+        a { color: #667eea; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>AI Token 充值服务</h1>
+            <p>校长AI · 稳定 · 低价 · 快速到账</p>
+        </div>
+        <div class="content">
+            <div class="section">
+                <div class="section-title">充值套餐</div>
+                <div class="packages">
+                    <div class="package">
+                        <div class="package-name">体验包</div>
+                        <div class="package-price">¥9.9<span>/次</span></div>
+                        <div class="package-tokens">约 400万 Token（DeepSeek-V3）</div>
+                        <div class="package-models">支持模型：DeepSeek-V3、Qwen系列、GLM-4等</div>
+                    </div>
+                    <div class="package recommend">
+                        <div class="package-tag">推荐</div>
+                        <div class="package-name">基础包</div>
+                        <div class="package-price">¥30<span>/次</span></div>
+                        <div class="package-tokens">约 1200万 Token（DeepSeek-V3）</div>
+                        <div class="package-models">支持模型：DeepSeek-V3、Qwen系列、GLM-4、DeepSeek-67B等</div>
+                    </div>
+                    <div class="package">
+                        <div class="package-name">进阶包</div>
+                        <div class="package-price">¥100<span>/次</span></div>
+                        <div class="package-tokens">约 4000万 Token（DeepSeek-V3）</div>
+                        <div class="package-models">支持模型：全模型接入，优先保障额度</div>
+                    </div>
+                    <div class="package">
+                        <div class="package-name">企业包</div>
+                        <div class="package-price">¥300<span>/次</span></div>
+                        <div class="package-tokens">约 1.2亿 Token（DeepSeek-V3）</div>
+                        <div class="package-models">支持模型：全模型 + 专属通道 + 优先响应</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">为什么选我们？</div>
+                <ul class="features">
+                    <li>人民币结算，微信/支付宝均可，兑换码秒到账</li>
+                    <li>付款后5分钟内发送兑换码，自助充值</li>
+                    <li>聚合多平台模型，一个API Key搞定</li>
+                    <li>价格比官网便宜20%-40%</li>
+                    <li>国内合规渠道，稳定可靠</li>
+                    <li>7x12小时微信客服支持</li>
+                </ul>
+            </div>
+            <div class="section">
+                <div class="section-title">如何使用？</div>
+                <div class="how-to-use">
+                    <ol>
+                        <li>添加校长微信，选择合适的套餐付款（微信/支付宝均可）</li>
+                        <li>付款后截图发给校长，校长会发送<strong>兑换码</strong>给你</li>
+                        <li>打开 <a href="http://119.91.225.247:3000" target="_blank">充值平台</a> → 注册/登录 → 钱包 → 兑换码充值</li>
+                        <li>使用以下信息接入（兼容 OpenAI 格式）：
+                            <div class="api-endpoint"><span class="label">API 地址：</span>http://119.91.225.247:3000/v1</div>
+                            <div class="api-endpoint"><span class="label">API Key：</span>充值后在令牌管理中自动生成</div>
+                        </li>
+                        <li>在代码或工具中直接使用，支持 ChatGPT、Cursor、OpenWebUI 等</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-title">联系校长</div>
+                <div class="contact">
+                    <p>微信扫码添加校长，备注"Token"优先通过</p>
+                    <div class="wechat-qr">
+                        <img src="wechat-qr.jpg" alt="微信二维码">
+                    </div>
+                    <p style="font-size: 13px; color: #999;">或搜索微信号：<strong style="color: #667eea;">YT-Pan</strong></p>
+                    <a href="#" class="contact-btn">立即咨询</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>&copy; 2026 校长AI · 服务条款见微信群公告</p>
+            <p style="margin-top: 5px;">本服务为 API 中转聚合服务，合规合法</p>
+        </div>
+    </div>
+</body>
+</html>
